@@ -31,9 +31,9 @@ jobs:
           pip install -r ./backend/requirements.txt
       - name: Test with flake8 and django tests
         env:
-          POSTGRES_USER: django_user
-          POSTGRES_PASSWORD: django_password
-          POSTGRES_DB: django_db
+          POSTGRES_USER: kittygram_user
+          POSTGRES_PASSWORD: kittygram_password
+          POSTGRES_DB: kittygram_db
           DB_HOST: 127.0.0.1
           DB_PORT: 5432
         run: |
@@ -112,7 +112,7 @@ jobs:
             sudo docker compose -f docker-compose.production.yml up -d
             sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
             sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
-            sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
+            sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /static/static/
 
   send_message:
     runs-on: ubuntu-latest
