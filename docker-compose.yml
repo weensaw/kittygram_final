@@ -1,15 +1,15 @@
 version: '3'
 
 volumes:
-  pg_data:  # Volume для данных PostgreSQL
-  static:  # Volume для статических файлов
+  pg_data_kittygram:  # Volume для данных PostgreSQL
+  kitty_static:  # Volume для статических файлов
 
 services:
   db:
     image: postgres:13
     env_file: .env
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - pg_data_kittygram:/var/lib/postgresql/data
 
   backend:
     build: ./backend/
