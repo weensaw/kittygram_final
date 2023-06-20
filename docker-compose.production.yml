@@ -4,6 +4,7 @@ version: '3'
 volumes:
   pg_data_kittygram:
   kitty_static:
+  media:
 
 # Всё отличие — заменяем build на image и указываем, какой образ использовать
 services:
@@ -16,7 +17,8 @@ services:
     image: weensaw/kittygram_backend
     env_file: .env
     volumes:
-      - static_volume:/backend_static
+      - static:/static/
+      - media:/media/
   frontend:
     image: weensaw/kittygram_frontend  # Качаем с Docker Hub
     env_file: .env
@@ -27,6 +29,7 @@ services:
     image: weensaw/kittygram_gateway  # Качаем с Docker Hub
     env_file: .env
     volumes:
-      - kitty_volume:/staticfiles/
+      - static:/static
+      - media:/media/
     ports:
       - 9000:80

@@ -15,14 +15,14 @@ services:
     build: ./backend/
     env_file: .env
     volumes:
-      - static:/backend_static
+      - kitty_static:/backend_static
 
   frontend:
     build: ./frontend/
     env_file: .env
     command: cp -r /app/build/. /static/
     volumes:
-      - static:/static
+      - kitty_static:/static
 
   gateway:
     build: ./nginx/
@@ -30,5 +30,5 @@ services:
     ports:
       - 9000:80
     volumes:
-      - static:/staticfiles/
+      - kitty_static:/staticfiles/
 
