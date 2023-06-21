@@ -3,8 +3,6 @@ version: '3'
 volumes:
   pg_data_kittygram:
   kitty_static:
-  media:
-  static:
 
 services:
   db:
@@ -17,22 +15,20 @@ services:
     image: weensaw/kittygram_backend
     env_file: .env
     volumes:
-      - static:/static/
-      - media:/media/
+      - kitty_static:/backend_static
 
   frontend:
     image: weensaw/kittygram_frontend
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static:/frontend_static
+      - kitty_static:/frontend_static
 
   gateway:
     image: weensaw/kittygram_gateway
     env_file: .env
     volumes:
-      - static:/static
-      - media:/media/
+      - kitty_static:/staticfiles/
     ports:
       - 9000:80
 

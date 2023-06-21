@@ -22,7 +22,7 @@ services:
     env_file: .env
     command: cp -r /app/build/. /static/
     volumes:
-      - kitty_static:/static
+      - kitty_static:/frontend_static
 
   gateway:
     build: ./nginx/
